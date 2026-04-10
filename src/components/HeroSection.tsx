@@ -36,7 +36,7 @@ const HeroSection = () => {
           <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in" style={{ animationDelay: "1.1s" }}>
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-body text-base px-8 transition-transform duration-200 hover:scale-105"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-body text-base px-8 py-3 rounded-lg transition-transform duration-200 hover:scale-105 shadow-lg"
               onClick={() => document.getElementById("order")?.scrollIntoView({ behavior: "smooth" })}
             >
               Order Now
@@ -44,7 +44,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-cream/40 text-cream hover:bg-cream/10 font-body text-base px-8 transition-transform duration-200 hover:scale-105"
+              className="bg-cream text-primary border-cream hover:bg-cream/90 font-body text-base px-8 py-3 rounded-lg transition-transform duration-200 hover:scale-105 shadow-lg"
               onClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}
             >
               View Menu
