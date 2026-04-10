@@ -1,18 +1,18 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import MenuSection from "@/components/MenuSection";
-import OrderSection from "@/components/OrderSection";
 import ReviewsSection from "@/components/ReviewsSection";
+import OrderSection from "@/components/OrderSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen scroll-smooth">
       <Navbar />
       <HeroSection />
       <MenuSection />
-      <OrderSection />
       <ReviewsSection />
+      <OrderSection />
       <Footer />
     </div>
   );
