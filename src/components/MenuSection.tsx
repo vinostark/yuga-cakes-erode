@@ -54,6 +54,14 @@ const MenuSection = () => {
             </Card>
           ))}
         </div>
+        <div className={`mt-10 text-center transition-all duration-700 ${gridVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: gridVisible ? "600ms" : "0ms" }}>
+          <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-6 py-3">
+            <span className="text-2xl">🎂</span>
+            <p className="text-foreground font-body text-sm md:text-base font-medium">
+              We bake <span className="text-primary font-semibold">fresh to order</span> — every cake is made only after your order is received!
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
