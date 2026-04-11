@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Cake, Heart, Leaf, Coffee, Cookie } from "lucide-react";
+import { Cake, Heart, Star, Cookie, Leaf, Coffee } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface MenuItem {
@@ -12,43 +12,42 @@ interface MenuItem {
 }
 
 const menuCategories: Record<string, MenuItem[]> = {
-  "Flavour Cakes": [
-    { name: "Chocolate Cake", price: "₹450", description: "Rich, moist chocolate sponge with ganache", icon: Cake, popular: true },
-    { name: "Choco Truffle Cake", price: "₹550", description: "Decadent truffle layers with dark chocolate", icon: Cake, popular: true },
-    { name: "Black Forest Cake", price: "₹600", description: "Cherry-filled chocolate cake with fresh cream", icon: Cake },
-    { name: "White Forest Cake", price: "₹600", description: "White chocolate cake with cherries and cream", icon: Cake },
-    { name: "Vanilla Cake", price: "₹400", description: "Classic vanilla sponge with buttercream frosting", icon: Cake },
-    { name: "Strawberry Cake", price: "₹550", description: "Fresh strawberry layers with whipped cream", icon: Cake, popular: true },
-    { name: "Blackcurrant Cake", price: "₹550", description: "Tangy blackcurrant flavour with cream frosting", icon: Cake },
-    { name: "Butterscotch Cake", price: "₹500", description: "Caramel butterscotch with crunchy praline", icon: Cake },
-    { name: "Mango Cake", price: "₹550", description: "Seasonal fresh mango with cream layers", icon: Cake },
+  "Flavor Cakes": [
+    { name: "Classic Vanilla", price: "₹450", description: "Rich vanilla sponge with buttercream frosting", icon: Cake, popular: true },
+    { name: "Chocolate Truffle", price: "₹550", description: "Decadent chocolate layers with ganache", icon: Heart, popular: true },
+    { name: "Black Forest", price: "₹600", description: "Cherry-filled chocolate cake with cream", icon: Cake },
+    { name: "Red Velvet", price: "₹650", description: "Velvety cake with cream cheese frosting", icon: Heart, popular: true },
+    { name: "Pineapple Delight", price: "₹500", description: "Fresh pineapple cake with whipped cream", icon: Cake },
+    { name: "Butterscotch Crunch", price: "₹500", description: "Caramel butterscotch with crunchy praline", icon: Star },
   ],
   "Brownies": [
-    { name: "Classic Brownie", price: "₹250", description: "Rich, dense fudge brownie with a crackly top", icon: Heart, popular: true },
-    { name: "Double Chocolate Brownie", price: "₹300", description: "Loaded with two layers of premium chocolate", icon: Heart },
-    { name: "Triple Chocolate Brownie", price: "₹350", description: "Three kinds of chocolate in every bite", icon: Heart, popular: true },
-    { name: "KitKat Brownie", price: "₹320", description: "Topped with crunchy KitKat wafer pieces", icon: Heart },
-    { name: "Oreo Brownie", price: "₹320", description: "Crushed Oreo cookies baked into fudgy brownie", icon: Heart },
-    { name: "Nutella Brownie", price: "₹350", description: "Swirled with creamy Nutella hazelnut spread", icon: Heart, popular: true },
+    { name: "Classic Fudge Brownie", price: "₹250", description: "Rich, dense fudge brownie with a crackly top", icon: Heart, popular: true },
+    { name: "Walnut Brownie", price: "₹300", description: "Loaded with crunchy walnuts and dark chocolate", icon: Star },
+    { name: "Cream Cheese Brownie", price: "₹320", description: "Swirled cream cheese over fudgy chocolate base", icon: Heart },
+    { name: "Salted Caramel Brownie", price: "₹350", description: "Drizzled with homemade salted caramel sauce", icon: Star, popular: true },
   ],
   "Healthy Brownies": [
-    { name: "Ragi Brownie", price: "₹280", description: "Finger millet based brownie, naturally sweetened", icon: Leaf, popular: true },
-    { name: "Karuppu Kavuni Brownie", price: "₹300", description: "Made with black rice, rich in antioxidants", icon: Leaf, popular: true },
-    { name: "Kambu Brownie", price: "₹270", description: "Pearl millet brownie, wholesome and nutritious", icon: Leaf },
+    { name: "Oats & Dark Chocolate", price: "₹280", description: "Made with rolled oats and 70% dark chocolate", icon: Leaf, popular: true },
+    { name: "Ragi Brownie", price: "₹270", description: "Finger millet based brownie, naturally sweetened", icon: Leaf },
+    { name: "Date & Walnut Brownie", price: "₹300", description: "Sweetened with dates, no refined sugar", icon: Leaf, popular: true },
+    { name: "Almond Flour Brownie", price: "₹350", description: "Gluten-free, protein-rich almond brownie", icon: Leaf },
   ],
   "Tea Cake": [
-    { name: "Vanilla Tea Cake", price: "₹350", description: "Light and fluffy vanilla loaf, perfect with tea", icon: Coffee, popular: true },
-    { name: "Rose Milk Tea Cake", price: "₹380", description: "Fragrant rose-infused cake with a pink hue", icon: Coffee, popular: true },
+    { name: "Lemon Tea Cake", price: "₹350", description: "Light and zesty lemon cake, perfect with tea", icon: Coffee, popular: true },
+    { name: "Marble Tea Cake", price: "₹320", description: "Swirled vanilla and chocolate loaf cake", icon: Coffee },
+    { name: "Banana Walnut Cake", price: "₹380", description: "Moist banana cake with toasted walnuts", icon: Coffee, popular: true },
+    { name: "Cardamom Butter Cake", price: "₹340", description: "Fragrant elaichi-infused buttery cake", icon: Coffee },
   ],
   "Cookies": [
-    { name: "Ragi Cookies", price: "₹180", description: "Crunchy finger millet cookies, healthy and tasty", icon: Cookie, popular: true },
-    { name: "Wheat Cookies", price: "₹160", description: "Wholesome whole wheat butter cookies", icon: Cookie },
-    { name: "Millets & Nuts Cookies", price: "₹200", description: "Multi-millet cookies loaded with mixed nuts", icon: Cookie, popular: true },
+    { name: "Chocolate Chip Cookies", price: "₹180", description: "Classic soft-baked cookies loaded with chips", icon: Cookie, popular: true },
+    { name: "Oatmeal Raisin Cookies", price: "₹160", description: "Chewy oat cookies with plump raisins", icon: Cookie },
+    { name: "Double Chocolate Cookies", price: "₹200", description: "Rich cocoa cookies with chocolate chunks", icon: Cookie, popular: true },
+    { name: "Butter Cookies", price: "₹150", description: "Melt-in-your-mouth traditional butter cookies", icon: Cookie },
   ],
 };
 
 const tabIcons: Record<string, typeof Cake> = {
-  "Flavour Cakes": Cake,
+  "Flavor Cakes": Cake,
   "Brownies": Heart,
   "Healthy Brownies": Leaf,
   "Tea Cake": Coffee,
@@ -74,7 +73,7 @@ const MenuSection = () => {
         </div>
 
         <div ref={gridRef} className={`max-w-5xl mx-auto transition-all duration-700 ${gridVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <Tabs defaultValue="Flavour Cakes" className="w-full">
+          <Tabs defaultValue="Flavor Cakes" className="w-full">
             <TabsList className="flex flex-wrap justify-center gap-2 bg-transparent h-auto mb-8 p-0">
               {Object.keys(menuCategories).map((category) => {
                 const Icon = tabIcons[category];

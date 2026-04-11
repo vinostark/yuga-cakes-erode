@@ -1,129 +1,89 @@
-import { useRef, useState } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
+import { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Float, MeshDistortMaterial, Sphere, Torus, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 const CakeModel = () => {
   const groupRef = useRef<THREE.Group>(null);
-  const [pointer, setPointer] = useState({ x: 0, y: 0 });
-  const { gl } = useThree();
 
-  // Track mouse position on the canvas
-  React.useEffect(() => {
-    const canvas = gl.domElement;
-    const onMove = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      setPointer({
-        x: ((e.clientX - rect.left) / rect.width) * 2 - 1,
-        y: -((e.clientY - rect.top) / rect.height) * 2 + 1,
-      });
-    };
-    canvas.addEventListener("pointermove", onMove);
-    return () => canvas.removeEventListener("pointermove", onMove);
-  }, [gl]);
-
-  useFrame(() => {
+  useFrame((state) => {
     if (groupRef.current) {
-      // Smoothly rotate based on cursor position
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(
-        groupRef.current.rotation.y,
-        pointer.x * Math.PI * 0.6,
-        0.05
-      );
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(
-        groupRef.current.rotation.x,
-        pointer.y * 0.3,
-        0.05
-      );
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.3;
     }
   });
 
   return (
     <group ref={groupRef}>
       {/* Base layer */}
-      <mesh position={[0, -0.7, 0]} castShadow>
-        <cylinderGeometry args={[1.6, 1.7, 0.8, 64]} />
-        <meshPhysicalMaterial color="#5C2D0E" roughness={0.35} metalness={0.05} clearcoat={0.4} clearcoatRoughness={0.3} />
+      <mesh position={[0, -0.6, 0]}>
+        <cylinderGeometry args={[1.6, 1.7, 0.7, 32]} />
+        <meshStandardMaterial color="#8B4513" roughness={0.4} metalness={0.1} />
       </mesh>
-      {/* Base frosting drip */}
-      <mesh position={[0, -0.25, 0]}>
-        <cylinderGeometry args={[1.62, 1.6, 0.12, 64]} />
-        <meshPhysicalMaterial color="#F5E6D3" roughness={0.15} metalness={0.02} clearcoat={0.8} />
-      </mesh>
-
       {/* Middle layer */}
-      <mesh position={[0, 0.05, 0]} castShadow>
-        <cylinderGeometry args={[1.25, 1.35, 0.7, 64]} />
-        <meshPhysicalMaterial color="#7B3F1A" roughness={0.3} metalness={0.05} clearcoat={0.4} />
+      <mesh position={[0, 0, 0]}>
+        <cylinderGeometry args={[1.3, 1.4, 0.6, 32]} />
+        <meshStandardMaterial color="#D2691E" roughness={0.3} metalness={0.1} />
       </mesh>
-      {/* Middle frosting */}
-      <mesh position={[0, 0.45, 0]}>
-        <cylinderGeometry args={[1.27, 1.25, 0.1, 64]} />
-        <meshPhysicalMaterial color="#FFF8EE" roughness={0.12} metalness={0.02} clearcoat={0.9} />
-      </mesh>
-
       {/* Top layer */}
-      <mesh position={[0, 0.7, 0]} castShadow>
-        <cylinderGeometry args={[0.95, 1.05, 0.5, 64]} />
-        <meshPhysicalMaterial color="#A0522D" roughness={0.3} metalness={0.05} clearcoat={0.5} />
+      <mesh position={[0, 0.5, 0]}>
+        <cylinderGeometry args={[1.0, 1.1, 0.5, 32]} />
+        <meshStandardMaterial color="#F4A460" roughness={0.3} metalness={0.1} />
       </mesh>
-      {/* Top frosting */}
-      <mesh position={[0, 1.0, 0]}>
-        <cylinderGeometry args={[0.97, 0.95, 0.1, 64]} />
-        <meshPhysicalMaterial color="#FFFDE7" roughness={0.1} metalness={0.02} clearcoat={1} />
+      {/* Frosting top */}
+      <mesh position={[0, 0.8, 0]}>
+        <cylinderGeometry args={[1.05, 1.0, 0.12, 32]} />
+        <meshStandardMaterial color="#FFFDD0" roughness={0.2} metalness={0.05} />
       </mesh>
-
-      {/* Berries on top */}
-      {[0, 1, 2, 3, 4, 5].map((i) => {
-        const angle = (i / 6) * Math.PI * 2;
-        const r = 0.55;
-        return (
-          <mesh key={`berry-${i}`} position={[Math.cos(angle) * r, 1.12, Math.sin(angle) * r]}>
-            <sphereGeometry args={[0.1, 16, 16]} />
-            <meshPhysicalMaterial
-              color={i % 2 === 0 ? "#DC143C" : "#4B0082"}
-              roughness={0.2}
-              metalness={0.1}
-              clearcoat={0.8}
-            />
-          </mesh>
-        );
-      })}
-
-      {/* Cherry on very top */}
-      <mesh position={[0, 1.22, 0]}>
-        <sphereGeometry args={[0.15, 24, 24]} />
-        <meshPhysicalMaterial color="#B22222" roughness={0.15} metalness={0.15} clearcoat={1} />
-      </mesh>
-      {/* Cherry stem */}
-      <mesh position={[0, 1.38, 0]} rotation={[0, 0, 0.2]}>
-        <cylinderGeometry args={[0.015, 0.015, 0.18, 8]} />
-        <meshStandardMaterial color="#2E7D32" />
+      {/* Cherry on top */}
+      <mesh position={[0, 1.1, 0]}>
+        <sphereGeometry args={[0.18, 16, 16]} />
+        <meshStandardMaterial color="#DC143C" roughness={0.3} metalness={0.2} />
       </mesh>
     </group>
   );
 };
 
-import React, { Suspense } from "react";
+const FloatingParticle = ({ position, color, size }: { position: [number, number, number]; color: string; size: number }) => (
+  <Float speed={2} rotationIntensity={1} floatIntensity={2}>
+    <Sphere args={[size, 16, 16]} position={position}>
+      <MeshDistortMaterial color={color} distort={0.3} speed={2} roughness={0.2} metalness={0.3} />
+    </Sphere>
+  </Float>
+);
+
+const DecorativeRing = ({ position, color }: { position: [number, number, number]; color: string }) => (
+  <Float speed={1.5} rotationIntensity={2} floatIntensity={1}>
+    <Torus args={[0.4, 0.08, 16, 32]} position={position} rotation={[Math.PI / 3, 0, 0]}>
+      <meshStandardMaterial color={color} roughness={0.3} metalness={0.5} />
+    </Torus>
+  </Float>
+);
 
 const CakeScene = () => {
   return (
     <Canvas
-      camera={{ position: [0, 1.5, 4.5], fov: 40 }}
-      style={{ width: "100%", height: "100%", cursor: "grab" }}
+      camera={{ position: [0, 2, 5], fov: 45 }}
+      style={{ width: "100%", height: "100%" }}
       gl={{ antialias: true, alpha: true }}
-      dpr={[1, 2]}
     >
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 8, 5]} intensity={1.2} castShadow />
-      <directionalLight position={[-3, 4, -3]} intensity={0.4} color="#FFE4B5" />
-      <pointLight position={[0, 5, 0]} intensity={0.6} color="#FFF8DC" />
-      <spotLight position={[3, 6, 2]} intensity={0.8} angle={0.4} penumbra={0.6} color="#FFFAF0" />
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
+      <pointLight position={[-3, 3, -3]} intensity={0.5} color="#FFD700" />
+      <spotLight position={[0, 5, 0]} intensity={0.8} angle={0.5} penumbra={0.5} color="#FFF8DC" />
 
-      <Suspense fallback={null}>
+      <Float speed={1} rotationIntensity={0.2} floatIntensity={0.5}>
         <CakeModel />
-        <Environment preset="studio" />
-      </Suspense>
+      </Float>
+
+      <FloatingParticle position={[2.5, 1, -1]} color="#FFD700" size={0.15} />
+      <FloatingParticle position={[-2.5, 0.5, -0.5]} color="#DC143C" size={0.12} />
+      <FloatingParticle position={[1.8, -0.5, 1]} color="#F4A460" size={0.1} />
+      <FloatingParticle position={[-1.5, 1.5, 0.5]} color="#FFFDD0" size={0.13} />
+
+      <DecorativeRing position={[-2, 1.5, -1]} color="#FFD700" />
+      <DecorativeRing position={[2.2, -0.3, 0.5]} color="#D2691E" />
+
+      <Environment preset="studio" />
     </Canvas>
   );
 };
