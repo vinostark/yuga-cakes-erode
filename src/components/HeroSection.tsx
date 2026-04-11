@@ -1,20 +1,55 @@
-import { Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, ChevronDown } from "lucide-react";
+import heroCake from "@/assets/hero-cake.png";
 
-const CakeScene = lazy(() => import("@/components/CakeScene"));
+const floatingItems = [
+  { emoji: "🍓", top: "15%", left: "65%", delay: "0s", size: "text-3xl" },
+  { emoji: "🫐", top: "25%", right: "8%", delay: "0.5s", size: "text-2xl" },
+  { emoji: "🥜", top: "60%", right: "5%", delay: "1s", size: "text-2xl" },
+  { emoji: "🍫", top: "75%", left: "60%", delay: "1.5s", size: "text-3xl" },
+  { emoji: "🌰", top: "40%", right: "12%", delay: "0.8s", size: "text-xl" },
+  { emoji: "🍒", top: "10%", right: "20%", delay: "1.2s", size: "text-2xl" },
+  { emoji: "🫒", top: "80%", right: "18%", delay: "0.3s", size: "text-xl" },
+  { emoji: "🍇", top: "50%", left: "58%", delay: "1.8s", size: "text-2xl" },
+];
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-foreground">
-      {/* 3D Background */}
-      <div className="absolute inset-0 opacity-80">
-        <Suspense fallback={<div className="w-full h-full bg-foreground" />}>
-          <CakeScene />
-        </Suspense>
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground/95 to-[hsl(32,40%,15%)]" />
+
+      {/* Floating fruit & nut particles */}
+      {floatingItems.map((item, i) => (
+        <div
+          key={i}
+          className={`absolute ${item.size} animate-float opacity-60 pointer-events-none z-[5]`}
+          style={{
+            top: item.top,
+            left: item.left,
+            right: item.right,
+            animationDelay: item.delay,
+            animationDuration: "3s",
+          }}
+        >
+          {item.emoji}
+        </div>
+      ))}
+
+      {/* Realistic cake image */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[45%] h-[80%] hidden md:flex items-center justify-center z-[2]">
+        <img
+          src={heroCake}
+          alt="Yuga Cakes - Realistic three-tier artisan cake with fruits and nuts"
+          width={1024}
+          height={1024}
+          className="w-full max-w-lg object-contain drop-shadow-2xl animate-fade-in"
+          style={{ animationDelay: "0.8s", animationFillMode: "forwards", opacity: 0 }}
+        />
       </div>
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/60 to-transparent" />
+
+      {/* Subtle overlay on text side */}
+      <div className="absolute inset-0 bg-gradient-to-r from-foreground/40 via-transparent to-transparent z-[3]" />
 
       <div className="relative z-10 container mx-auto px-6">
         <div className="max-w-xl">
