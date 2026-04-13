@@ -116,6 +116,14 @@ export default {
           "33%": { transform: "translate(8px,-10px) rotate(10deg)" },
           "66%": { transform: "translate(-6px,8px) rotate(-8deg)" },
         },
+        "scroll-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "scroll-right": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
         "shimmer": {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
