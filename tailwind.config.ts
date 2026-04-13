@@ -99,6 +99,23 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
+        "wiggle1": {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "25%": { transform: "translateY(-12px) rotate(8deg)" },
+          "50%": { transform: "translateY(-6px) rotate(-5deg)" },
+          "75%": { transform: "translateY(-14px) rotate(6deg)" },
+        },
+        "wiggle2": {
+          "0%, 100%": { transform: "translateX(0) rotate(0deg)" },
+          "25%": { transform: "translateX(10px) rotate(-6deg)" },
+          "50%": { transform: "translateX(-8px) rotate(8deg)" },
+          "75%": { transform: "translateX(6px) rotate(-4deg)" },
+        },
+        "wiggle3": {
+          "0%, 100%": { transform: "translate(0,0) rotate(0deg)" },
+          "33%": { transform: "translate(8px,-10px) rotate(10deg)" },
+          "66%": { transform: "translate(-6px,8px) rotate(-8deg)" },
+        },
         "shimmer": {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
@@ -112,6 +129,9 @@ export default {
         "fade-in-right": "fade-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.5s ease-out forwards",
         "float": "float 3s ease-in-out infinite",
+        "wiggle1": "wiggle1 3.5s ease-in-out infinite",
+        "wiggle2": "wiggle2 4s ease-in-out infinite",
+        "wiggle3": "wiggle3 3s ease-in-out infinite",
         "shimmer": "shimmer 2s linear infinite",
       },
     },
