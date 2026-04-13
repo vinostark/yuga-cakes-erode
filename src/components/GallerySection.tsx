@@ -1,21 +1,21 @@
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
-import cake1 from "@/assets/gallery/cake1.jpg";
-import cake2 from "@/assets/gallery/cake2.jpg";
-import cake3 from "@/assets/gallery/cake3.jpg";
-import cake4 from "@/assets/gallery/cake4.jpg";
-import cake5 from "@/assets/gallery/cake5.jpg";
-import cake6 from "@/assets/gallery/cake6.jpg";
-import cake7 from "@/assets/gallery/cake7.jpg";
-import cake8 from "@/assets/gallery/cake8.jpg";
-import cake9 from "@/assets/gallery/cake9.jpg";
+import real1 from "@/assets/gallery/real1.jpg";
+import real2 from "@/assets/gallery/real2.jpg";
+import real3 from "@/assets/gallery/real3.jpg";
+import real4 from "@/assets/gallery/real4.jpg";
+import real5 from "@/assets/gallery/real5.jpg";
+import real6 from "@/assets/gallery/real6.jpg";
+import real7 from "@/assets/gallery/real7.jpg";
+import real8 from "@/assets/gallery/real8.jpg";
+import real9 from "@/assets/gallery/real9.jpg";
+import real10 from "@/assets/gallery/real10.jpg";
 
-const row1 = [cake1, cake2, cake3, cake4, cake5, cake6, cake7, cake8, cake9];
-const row2 = [cake5, cake9, cake1, cake7, cake3, cake6, cake2, cake8, cake4];
-const row3 = [cake8, cake4, cake6, cake2, cake9, cake1, cake7, cake5, cake3];
+const row1 = [real1, real2, real3, real4, real5, real6, real7, real8, real9, real10];
+const row2 = [real6, real10, real2, real8, real4, real1, real7, real3, real9, real5];
+const row3 = [real9, real5, real7, real1, real10, real3, real8, real6, real2, real4];
 
 const GalleryRow = ({ images, direction }: { images: string[]; direction: "left" | "right" }) => {
-  // Duplicate for seamless loop
   const doubled = [...images, ...images];
   return (
     <div className="overflow-hidden py-2">
