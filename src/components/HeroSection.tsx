@@ -3,14 +3,22 @@ import { MapPin, ChevronDown } from "lucide-react";
 import heroCake from "@/assets/hero-cake.png";
 
 const floatingItems = [
-  { emoji: "🍓", top: "15%", left: "65%", delay: "0s", size: "text-3xl" },
-  { emoji: "🫐", top: "25%", right: "8%", delay: "0.5s", size: "text-2xl" },
-  { emoji: "🥜", top: "60%", right: "5%", delay: "1s", size: "text-2xl" },
-  { emoji: "🍫", top: "75%", left: "60%", delay: "1.5s", size: "text-3xl" },
-  { emoji: "🌰", top: "40%", right: "12%", delay: "0.8s", size: "text-xl" },
-  { emoji: "🍒", top: "10%", right: "20%", delay: "1.2s", size: "text-2xl" },
-  { emoji: "🫒", top: "80%", right: "18%", delay: "0.3s", size: "text-xl" },
-  { emoji: "🍇", top: "50%", left: "58%", delay: "1.8s", size: "text-2xl" },
+  { emoji: "🍓", top: "8%", left: "5%", delay: "0s", size: "text-4xl", wiggle: "wiggle1" },
+  { emoji: "🫐", top: "20%", right: "8%", delay: "0.5s", size: "text-3xl", wiggle: "wiggle2" },
+  { emoji: "🥜", top: "55%", right: "5%", delay: "1s", size: "text-3xl", wiggle: "wiggle3" },
+  { emoji: "🍫", top: "75%", left: "60%", delay: "1.5s", size: "text-4xl", wiggle: "wiggle1" },
+  { emoji: "🌰", top: "35%", right: "12%", delay: "0.8s", size: "text-3xl", wiggle: "wiggle2" },
+  { emoji: "🍒", top: "10%", right: "25%", delay: "1.2s", size: "text-3xl", wiggle: "wiggle3" },
+  { emoji: "🫒", top: "80%", right: "18%", delay: "0.3s", size: "text-2xl", wiggle: "wiggle1" },
+  { emoji: "🍇", top: "45%", left: "58%", delay: "1.8s", size: "text-3xl", wiggle: "wiggle2" },
+  { emoji: "🥥", top: "5%", left: "30%", delay: "0.2s", size: "text-3xl", wiggle: "wiggle3" },
+  { emoji: "🍑", top: "70%", left: "8%", delay: "0.7s", size: "text-4xl", wiggle: "wiggle1" },
+  { emoji: "🫘", top: "30%", left: "15%", delay: "1.3s", size: "text-2xl", wiggle: "wiggle2" },
+  { emoji: "🍋", top: "60%", left: "25%", delay: "0.4s", size: "text-3xl", wiggle: "wiggle3" },
+  { emoji: "🥝", top: "15%", left: "45%", delay: "1.6s", size: "text-2xl", wiggle: "wiggle1" },
+  { emoji: "🍊", top: "85%", left: "40%", delay: "0.9s", size: "text-3xl", wiggle: "wiggle2" },
+  { emoji: "🏵️", top: "90%", right: "8%", delay: "1.1s", size: "text-2xl", wiggle: "wiggle3" },
+  { emoji: "🥭", top: "50%", left: "3%", delay: "1.4s", size: "text-3xl", wiggle: "wiggle1" },
 ];
 
 const HeroSection = () => {
@@ -23,7 +31,7 @@ const HeroSection = () => {
       {floatingItems.map((item, i) => (
         <div
           key={i}
-          className={`absolute ${item.size} animate-float opacity-60 pointer-events-none z-[5]`}
+          className={`absolute ${item.size} animate-${item.wiggle} opacity-70 pointer-events-none z-[5]`}
           style={{
             top: item.top,
             left: item.left,
